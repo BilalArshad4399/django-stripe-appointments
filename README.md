@@ -1,5 +1,3 @@
-# a59ae98d8bf64c45a0c306ff2541f5e6
-
 # Sofia Health - Django Appointment Booking System
 
 A Django-based appointment booking platform with Stripe payment integration, demonstrating core skills in Django development and payment processing.
