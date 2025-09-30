@@ -1,1 +1,1 @@
-web: gunicorn sofia_health.wsgi --bind 0.0.0.0:$PORT
+web: python manage.py migrate && gunicorn sofia_health.wsgi --bind 0.0.0.0:$PORT

@@ -141,3 +141,10 @@ sofia_health_project/
 - These are Stripe TEST keys (starting with `pk_test_` and `sk_test_`) - safe for assessment purposes
 - Never commit real/production keys to version control
 - For production deployment, use proper secret management and live Stripe keys
+
+## Deployment Troubleshooting
+
+If you get "relation does not exist" error after deployment:
+1. The database migrations haven't run
+2. Go to Koyeb/Heroku console and run: `python manage.py migrate`
+3. Or redeploy - the Procfile now includes automatic migrations
