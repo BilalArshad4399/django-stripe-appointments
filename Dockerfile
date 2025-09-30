@@ -23,12 +23,15 @@ COPY . .
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Create entrypoint script
+# Create a startup script
 RUN echo '#!/bin/sh\n\
+echo "Running migrations..."\n\
+python manage.py makemigrations --noinput\n\
 python manage.py migrate --noinput\n\
-exec "$@"' > /entrypoint.sh && chmod +x /entrypoint.sh
+echo "Migrations completed."\n\
+exec "$@"' > /startup.sh && chmod +x /startup.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/startup.sh"]
 
 # Run the application
 CMD ["gunicorn", "sofia_health.wsgi:application", "--bind", "0.0.0.0:8000"]
