@@ -5,7 +5,15 @@
 A Django-based appointment booking platform with Stripe payment integration, demonstrating core skills in Django development and payment processing.
 
 > **Note for Evaluators:** The `.env.test` file contains working Stripe TEST keys. Copy it to `.env` for immediate setup. For Docker, update `.env.docker` with your Stripe test keys.
+ 
+##  Live Demo
 
+This project is deployed on a live server. You can check it out here:
+
+- **Main Application**: [View App](https://inland-isa-wotbix-ebde8999.koyeb.app/)  
+- **Appointments List**: [View List](https://inland-isa-wotbix-ebde8999.koyeb.app/list/)
+
+  
 ## Quick Start
 
 ### Option 1: Using Docker (Recommended)
