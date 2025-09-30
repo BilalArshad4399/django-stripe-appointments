@@ -1,0 +1,1 @@
+web: gunicorn sofia_health.wsgi --bind 0.0.0.0:$PORT

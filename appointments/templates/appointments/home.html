@@ -1,0 +1,242 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}Sofia Health - Book Wellness Appointments{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="background: rgba(22, 160, 133, 0.05); padding: 80px 0;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4" style="color: var(--sofia-text);">A healthier, happier you.</h1>
+                <p class="lead mb-4" style="color: var(--sofia-gray);">Book appointments, shop wellness products, and explore live classes. All your wellness needs in one place!</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="{% url 'appointments:create' %}" class="btn btn-primary btn-lg">Book Appointment</a>
+                    <button class="btn btn-outline-primary btn-lg">Live classes happening now!</button>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div style="padding: 40px;">
+                    <svg viewBox="0 0 500 400" style="max-width: 100%; height: auto;">
+                        <circle cx="250" cy="200" r="150" fill="rgba(22, 160, 133, 0.1)" />
+                        <path d="M200 150 Q250 100 300 150" stroke="#16A085" stroke-width="3" fill="none" />
+                        <path d="M200 250 Q250 300 300 250" stroke="#52467e" stroke-width="3" fill="none" />
+                        <circle cx="200" cy="200" r="10" fill="#16A085" />
+                        <circle cx="300" cy="200" r="10" fill="#52467e" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Categories -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5" style="color: var(--sofia-text);">Discover Unique Services Based On</h2>
+        <div class="row g-4">
+            <!-- Row 1 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card" style="cursor: pointer;">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-primary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319z"/>
+                            </svg>
+                        </div>
+                        <h5>Coaching</h5>
+                        <p class="text-muted small">Life & wellness coaches</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-secondary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 15s-4-5.5-4-10A4 4 0 0 1 8 1a4 4 0 0 1 4 4c0 4.5-4 10-4 10z"/>
+                                <path d="M8 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                            </svg>
+                        </div>
+                        <h5>Conception & Pregnancy</h5>
+                        <p class="text-muted small">Fertility & maternity care</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-primary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4.143A1.071 1.071 0 1 0 8 2a1.071 1.071 0 0 0 0 2.143zm-4.668 1.47 3.24.316v2.5l-.323 4.585A.383.383 0 0 0 6.14 13c.101.198.32.265.557.265.264 0 .477-.118.557-.265a.383.383 0 0 0-.108-.986l-.323-4.585v-2.5l3.24-.316a.385.385 0 1 0-.076-.766L8.002 4.095 6.017 3.847a.385.385 0 0 0-.076.766z"/>
+                            </svg>
+                        </div>
+                        <h5>Fitness</h5>
+                        <p class="text-muted small">Personal trainers & yoga</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-secondary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 1 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 7V5H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1v2h1v6H4V7h1z"/>
+                            </svg>
+                        </div>
+                        <h5>Hair & Skin Care</h5>
+                        <p class="text-muted small">Beauty & wellness experts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-3">
+            <!-- Row 2 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-primary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                        </div>
+                        <h5>Healing</h5>
+                        <p class="text-muted small">Alternative medicine</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-secondary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                        </div>
+                        <h5>Health</h5>
+                        <p class="text-muted small">Primary care & specialists</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-primary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg>
+                        </div>
+                        <h5>Mental Health</h5>
+                        <p class="text-muted small">Therapists & counselors</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-secondary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 16c3.314 0 6-2 6-5.5 0-1.5-.5-4-2.5-6 .25 1.5-1.25 2-1.25 2C11 4 9 .5 6 0c.357 2 .5 4-2 6-1.25 1-2 2.729-2 4.5C2 14 4.686 16 8 16zm0-1c-1.657 0-3-1-3-2.75 0-.75.25-2 1.25-3C6.125 10 7 10.5 7 10.5c-.375-1.25.5-3.25 2-3.5-.179 1-.25 2 1 3 .625.5 1 1.364 1 2.25C11 14 9.657 15 8 15z"/>
+                            </svg>
+                        </div>
+                        <h5>Nutrition</h5>
+                        <p class="text-muted small">Dietitians & nutritionists</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-3">
+            <!-- Row 3 - Only 2 items -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-primary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M4.5 12a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm3 0a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5h-1z"/>
+                                <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+                            </svg>
+                        </div>
+                        <h5>Pet Health</h5>
+                        <p class="text-muted small">Veterinary & pet wellness</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 text-center service-card">
+                    <div class="card-body">
+                        <div class="mb-3" style="color: var(--sofia-secondary);">
+                            <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+                            </svg>
+                        </div>
+                        <h5>Teen & Young Adult</h5>
+                        <p class="text-muted small">Specialized youth care</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it Works -->
+<section class="py-5" style="background-color: var(--sofia-light-gray);">
+    <div class="container">
+        <h2 class="text-center mb-5">How Sofia Health Works</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: var(--sofia-primary);">
+                        <span class="text-white fs-2 fw-bold">1</span>
+                    </div>
+                </div>
+                <h4>Find Your Provider</h4>
+                <p class="text-muted">Browse our network of vetted wellness professionals</p>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: var(--sofia-primary);">
+                        <span class="text-white fs-2 fw-bold">2</span>
+                    </div>
+                </div>
+                <h4>Book Your Appointment</h4>
+                <p class="text-muted">Schedule online or in-person sessions at your convenience</p>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; background: var(--sofia-primary);">
+                        <span class="text-white fs-2 fw-bold">3</span>
+                    </div>
+                </div>
+                <h4>Start Your Journey</h4>
+                <p class="text-muted">Connect with your provider and begin your wellness journey</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="mb-4">Ready to prioritize your wellness?</h2>
+            <p class="lead mb-4 text-muted">Join thousands who trust Sofia Health for their wellness needs</p>
+            <a href="{% url 'appointments:create' %}" class="btn btn-primary btn-lg me-3">Book an Appointment</a>
+            <button class="btn btn-outline-primary btn-lg">Learn More</button>
+        </div>
+    </div>
+</section>
+
+<style>
+.service-card {
+    transition: all 0.3s ease;
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}Payment Cancelled - Sofia Health{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <div class="mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="orange" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                    </svg>
+                </div>
+                <h2 class="text-warning mb-3">Payment Cancelled</h2>
+                <p class="lead mb-4">Your payment was cancelled and the appointment was not booked.</p>
+
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5>Appointment Details</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Provider:</strong> {{ appointment.provider_name }}</li>
+                            <li><strong>Date & Time:</strong> {{ appointment.appointment_time|date:"M d, Y - g:i A" }}</li>
+                            <li><strong>Email:</strong> {{ appointment.client_email }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="{% url 'appointments:payment' appointment.id %}" class="btn btn-primary">Try Again</a>
+                    <a href="{% url 'appointments:home' %}" class="btn btn-outline-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

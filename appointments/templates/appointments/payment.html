@@ -1,0 +1,165 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}Secure Payment - Sofia Health{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Progress Bar -->
+            <div class="mb-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-center flex-fill">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--sofia-primary); color: white;">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                            </svg>
+                        </div>
+                        <p class="small mt-2 mb-0" style="color: var(--sofia-primary);">Book Appointment</p>
+                    </div>
+                    <div class="flex-fill" style="height: 2px; background: var(--sofia-primary); margin: 0 10px; margin-bottom: 20px;"></div>
+                    <div class="text-center flex-fill">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--sofia-primary); color: white;">
+                            <span class="fw-bold">2</span>
+                        </div>
+                        <p class="small mt-2 mb-0" style="color: var(--sofia-primary);">Payment</p>
+                    </div>
+                    <div class="flex-fill" style="height: 2px; background: #e0e0e0; margin: 0 10px; margin-bottom: 20px;"></div>
+                    <div class="text-center flex-fill">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: #e0e0e0; color: #999;">
+                            <span class="fw-bold">3</span>
+                        </div>
+                        <p class="small mt-2 mb-0 text-muted">Confirmation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Card -->
+            <div class="card shadow-sm">
+                <div class="card-body p-5">
+                    <h2 class="mb-4" style="color: var(--sofia-text);">Review & Pay</h2>
+
+                    <!-- Appointment Summary -->
+                    <div class="card mb-4" style="background: var(--sofia-light-gray); border: none;">
+                        <div class="card-body">
+                            <h5 class="mb-3" style="color: var(--sofia-text);">Appointment Summary</h5>
+                            <div class="row">
+                                <div class="col-sm-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-primary); margin-top: 2px; margin-right: 8px;">
+                                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        </svg>
+                                        <div>
+                                            <small class="text-muted d-block">Provider</small>
+                                            <strong>{{ appointment.provider_name }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-secondary); margin-top: 2px; margin-right: 8px;">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>
+                                        <div>
+                                            <small class="text-muted d-block">Date & Time</small>
+                                            <strong>{{ appointment.appointment_time|date:"M d, Y" }}</strong><br>
+                                            <strong>{{ appointment.appointment_time|date:"g:i A" }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-primary); margin-top: 2px; margin-right: 8px;">
+                                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                                        </svg>
+                                        <div>
+                                            <small class="text-muted d-block">Email</small>
+                                            <strong>{{ appointment.client_email }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-secondary); margin-top: 2px; margin-right: 8px;">
+                                            <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                                            <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
+                                        </svg>
+                                        <div>
+                                            <small class="text-muted d-block">Session Fee</small>
+                                            <strong style="color: var(--sofia-primary); font-size: 1.25rem;">${{ amount }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <h5 class="mb-3" style="color: var(--sofia-text);">Payment Method</h5>
+                    <div class="card mb-4" style="border: 2px solid var(--sofia-primary); background: rgba(22, 160, 133, 0.05);">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <svg width="40" height="40" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-primary); margin-right: 15px;">
+                                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+                                </svg>
+                                <div class="flex-fill">
+                                    <h6 class="mb-0" style="color: var(--sofia-text);">Secure Card Payment</h6>
+                                    <small class="text-muted">Powered by Stripe</small>
+                                </div>
+                                <div>
+                                    <span class="badge" style="background: var(--sofia-primary); color: white;">Selected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Test Mode Alert -->
+                    <div class="alert" style="background: var(--sofia-light-gray); border: 1px solid var(--sofia-secondary); color: var(--sofia-text);">
+                        <div class="d-flex align-items-center">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="me-2" style="color: var(--sofia-secondary);">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                            <div>
+                                <strong>Test Mode Active</strong><br>
+                                <small>Use test card: 4242 4242 4242 4242 | Any future date | Any CVC</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                            </svg>
+                            Pay ${{ amount }} with Stripe
+                        </button>
+                    </form>
+
+                    <!-- Security Badge -->
+                    <div class="text-center">
+                        <small class="text-muted">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-1">
+                                <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"/>
+                            </svg>
+                            Your payment information is encrypted and secure
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center mt-3">
+                <a href="{% url 'appointments:create' %}" class="text-muted text-decoration-none">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="me-1">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    Back to appointment details
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

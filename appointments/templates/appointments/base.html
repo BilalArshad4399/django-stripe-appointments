@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sofia Health{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sofia-primary: #16A085;
+            --sofia-primary-dark: #138A72;
+            --sofia-secondary: #52467e;
+            --sofia-secondary-dark: #423668;
+            --sofia-accent: #E8F5E9;
+            --sofia-gray: #6C757D;
+            --sofia-light-gray: #F8F9FA;
+            --sofia-text: #2C3E50;
+            --sofia-muted: #95989A;
+        }
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--sofia-text);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--sofia-primary) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--sofia-text) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--sofia-primary) !important;
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--sofia-primary) !important;
+            font-weight: 600;
+            border-bottom: 2px solid var(--sofia-primary);
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-link.appointments-link {
+            color: var(--sofia-text) !important;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link.appointments-link:hover {
+            color: var(--sofia-primary) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--sofia-primary);
+            border-color: var(--sofia-primary);
+            border-radius: 24px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--sofia-primary-dark);
+            border-color: var(--sofia-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+        }
+
+        .btn-outline-primary {
+            color: var(--sofia-primary);
+            border-color: var(--sofia-primary);
+            border-radius: 24px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--sofia-primary);
+            border-color: var(--sofia-primary);
+        }
+
+        .btn-join {
+            background-color: var(--sofia-primary);
+            border-color: var(--sofia-primary);
+            color: white;
+            border-radius: 24px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .btn-join:hover {
+            background-color: var(--sofia-primary-dark);
+            border-color: var(--sofia-primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+        }
+
+        .card {
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1.5px solid #e0e0e0;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--sofia-primary);
+            box-shadow: 0 0 0 0.2rem rgba(22, 160, 133, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'appointments:home' %}">Sofia Health</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'appointments:home' %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">For Practitioners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">For Employers</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="{% url 'appointments:list' %}" class="nav-link appointments-link me-3">Appointments</a>
+                    <a href="{% url 'appointments:create' %}" class="btn btn-join">Book now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-0">
+        {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="mt-5 pt-5 pb-4" style="background-color: #f8f9fa; border-top: 1px solid #e0e0e0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="text-muted mb-3">Customers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'appointments:home' %}" class="text-decoration-none text-muted">Find Practitioners</a></li>
+                        <li><a href="{% url 'appointments:create' %}" class="text-decoration-none text-muted">Book Appointments</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Wellness Products</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Live Classes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-muted mb-3">Providers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-muted">Join as Provider</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Provider Resources</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Provider Portal</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-muted mb-3">Employers</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-muted">Corporate Wellness</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Employee Benefits</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Partner with Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-muted mb-3">Company</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none text-muted">About Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Contact</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Privacy Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-muted">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p class="mb-0">© 2025 Sofia Health. All rights reserved.</p>
+                <small>Your trusted wellness platform</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

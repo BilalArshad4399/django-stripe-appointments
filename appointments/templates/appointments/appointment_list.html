@@ -1,0 +1,188 @@
+{% extends 'appointments/base.html' %}
+
+{% block title %}Your Appointments - Sofia Health{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header Section -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="h2 mb-2" style="color: var(--sofia-text);">Your Appointments</h1>
+                    <p class="text-muted mb-0">Manage and track all your wellness sessions</p>
+                </div>
+                <a href="{% url 'appointments:create' %}" class="btn btn-primary">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" class="me-2">
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Book New Appointment
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card border-0" style="background: var(--sofia-light-gray);">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle p-3 me-3" style="background: rgba(22, 160, 133, 0.1);">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-primary);">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Total</h6>
+                                    <h4 class="mb-0">{{ appointments|length }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0" style="background: var(--sofia-light-gray);">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle p-3 me-3" style="background: rgba(40, 167, 69, 0.1);">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" style="color: #28A745;">
+                                        <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Paid</h6>
+                                    <h4 class="mb-0">{{ paid_count }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0" style="background: var(--sofia-light-gray);">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle p-3 me-3" style="background: rgba(255, 193, 7, 0.1);">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" style="color: #FFC107;">
+                                        <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Pending</h6>
+                                    <h4 class="mb-0">{{ pending_count }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card border-0" style="background: var(--sofia-light-gray);">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="rounded-circle p-3 me-3" style="background: rgba(108, 117, 125, 0.1);">
+                                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16" style="color: #6C757D;">
+                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h6 class="text-muted mb-1">Cancelled</h6>
+                                    <h4 class="mb-0">{{ cancelled_count }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointments Table -->
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    {% if appointments %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead style="background: var(--sofia-light-gray);">
+                                <tr>
+                                    <th class="border-0 px-4 py-3" style="color: var(--sofia-text);">Provider</th>
+                                    <th class="border-0 py-3" style="color: var(--sofia-text);">Date & Time</th>
+                                    <th class="border-0 py-3" style="color: var(--sofia-text);">Client Email</th>
+                                    <th class="border-0 py-3" style="color: var(--sofia-text);">Amount</th>
+                                    <th class="border-0 py-3" style="color: var(--sofia-text);">Status</th>
+                                    <th class="border-0 py-3" style="color: var(--sofia-text);">Booked On</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in appointments %}
+                                <tr>
+                                    <td class="px-4 py-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle p-2 me-3" style="background: rgba(22, 160, 133, 0.1);">
+                                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="color: var(--sofia-primary);">
+                                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">{{ appointment.provider_name }}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-3">
+                                        <div>
+                                            <strong>{{ appointment.appointment_time|date:"M d, Y" }}</strong><br>
+                                            <small class="text-muted">{{ appointment.appointment_time|date:"g:i A" }}</small>
+                                        </div>
+                                    </td>
+                                    <td class="py-3">{{ appointment.client_email }}</td>
+                                    <td class="py-3">
+                                        <strong style="color: var(--sofia-primary);">${{ appointment.amount }}</strong>
+                                    </td>
+                                    <td class="py-3">
+                                        {% if appointment.payment_status == 'paid' %}
+                                            <span class="badge rounded-pill px-3 py-2" style="background: rgba(40, 167, 69, 0.1); color: #28A745;">
+                                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16" class="me-1">
+                                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+                                                </svg>
+                                                Paid
+                                            </span>
+                                        {% elif appointment.payment_status == 'pending' %}
+                                            <span class="badge rounded-pill px-3 py-2" style="background: rgba(255, 193, 7, 0.1); color: #FFC107;">
+                                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16" class="me-1">
+                                                    <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                                                </svg>
+                                                Pending
+                                            </span>
+                                        {% elif appointment.payment_status == 'cancelled' %}
+                                            <span class="badge rounded-pill px-3 py-2" style="background: rgba(108, 117, 125, 0.1); color: #6C757D;">
+                                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16" class="me-1">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                </svg>
+                                                Cancelled
+                                            </span>
+                                        {% else %}
+                                            <span class="badge rounded-pill px-3 py-2" style="background: rgba(220, 53, 69, 0.1); color: #DC3545;">
+                                                Failed
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-3">
+                                        <small class="text-muted">{{ appointment.created_at|date:"M d, Y" }}</small>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <svg width="80" height="80" fill="currentColor" viewBox="0 0 16 16" style="color: #e0e0e0;" class="mb-3">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>
+                        <h4 class="mb-3" style="color: var(--sofia-text);">No Appointments Yet</h4>
+                        <p class="text-muted mb-4">Start your wellness journey by booking your first appointment</p>
+                        <a href="{% url 'appointments:create' %}" class="btn btn-primary btn-lg">Book Your First Appointment</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
