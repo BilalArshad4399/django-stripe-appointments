@@ -4,6 +4,14 @@
 1. Create a free account at https://app.koyeb.com/
 2. Push your code to GitHub
 
+## Deployment Options
+
+### Option 1: Deploy with Docker (Recommended)
+
+Koyeb automatically detects the Dockerfile and uses it for deployment.
+
+### Option 2: Deploy with Buildpack
+
 ## Step-by-Step Deployment
 
 ### 1. Push Code to GitHub
@@ -27,7 +35,12 @@ In the Build and deployment settings:
 
 **Build command:**
 ```bash
-pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+python -m pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+```
+
+Or if that doesn't work, try:
+```bash
+python3 -m pip install -r requirements.txt && python3 manage.py collectstatic --noinput && python3 manage.py migrate
 ```
 
 **Run command:**

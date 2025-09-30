@@ -1,3 +1,5 @@
+# a59ae98d8bf64c45a0c306ff2541f5e6
+
 # Sofia Health - Django Appointment Booking System
 
 A Django-based appointment booking platform with Stripe payment integration, demonstrating core skills in Django development and payment processing.
@@ -6,7 +8,31 @@ A Django-based appointment booking platform with Stripe payment integration, dem
 
 ## Quick Start
 
-### Prerequisites
+### Option 1: Using Docker (Recommended)
+
+#### Prerequisites
+- Docker and Docker Compose installed
+
+#### Run with Docker Compose
+```bash
+# Clone the project
+cd sofia_health_project
+
+# Run with Docker Compose
+docker-compose up --build
+
+# Access the application at http://localhost:8000
+```
+
+The Docker setup includes:
+- PostgreSQL database
+- All dependencies
+- Automatic migrations
+- Static files collection
+
+### Option 2: Manual Setup
+
+#### Prerequisites
 - Python 3.8 or higher
 - pip (Python package manager)
 

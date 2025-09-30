@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*.koyeb.app}
+    command: >
+      sh -c "
+      python manage.py migrate --noinput &&
+      gunicorn sofia_health.wsgi:application --bind 0.0.0.0:8000
+      "
